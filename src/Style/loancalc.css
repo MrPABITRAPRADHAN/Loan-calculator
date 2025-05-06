@@ -1,0 +1,98 @@
+/* LoanCalculator.css */
+.loan-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.loan-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color:rgb(65, 65, 65) ;
+}
+
+.currency-reset-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.currency-select {
+  flex: 1;
+  padding: 10px;
+}
+
+.reset-button {
+  background-color: #f87171;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: #f30909;
+}
+
+.calc-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calc-button:hover {
+  background-color: #4338ca;
+}
+
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+  max-width: 800px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  color: rgb(65, 65, 65);
+}
+
+th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+}
