@@ -76,6 +76,7 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
+   
   }
   
   .menu-toggle .bar {
@@ -84,6 +85,7 @@
     background-color: #374151;
     margin: 4px 0;
     transition: 0.4s;
+    color: #ffffff;
   }
   
   .navbar.dark .menu-toggle .bar {
@@ -92,6 +94,7 @@
   
   /* Responsive */
   @media (max-width: 768px) {
+    
     .nav-links {
       position: absolute;
       top: 64px;
@@ -103,12 +106,22 @@
       display: none;
       gap: 16px;
       padding: 16px 0;
-
+      background: #000;
+  
       && a{
-        color: black;
+        color: white;
       }
     }
+    .navbar {
+      transition: height 0.3s ease;
+      height: auto; /* default height */
+      overflow: hidden;
+    }
   
+    .navbar.expanded {
+      height: 40vh; /* expanded height when menu is open */
+    }
+   
     .nav-links.active {
       display: flex;
     }
@@ -116,5 +129,8 @@
     .menu-toggle {
       display: flex;
     }
+
+
+    
   }
   

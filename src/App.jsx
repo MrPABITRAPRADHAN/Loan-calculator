@@ -19,7 +19,7 @@ function App() {
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <Routes>
           <Route path="/" element={<Layout darkMode={darkMode} setDarkMode={setDarkMode}/>} />
-          <Route path="/about" element={<About darkMode={darkMode}/>} />
+          <Route path="/about" element={<About darkMode={darkMode} />} />
           <Route path="/exchange" element={<ExchangeRates darkMode={darkMode}/>} />
         </Routes>
        

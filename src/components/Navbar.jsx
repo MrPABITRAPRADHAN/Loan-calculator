@@ -20,17 +20,17 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
           <li>
-            <NavLink to="/" onClick={() => setIsOpen(false)} end>
+            <NavLink to="/" >
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/exchange"  onClick={() => setIsOpen(false)}>
+            <NavLink to="/exchange"  >
               Exchange Rates
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" onClick={() => setIsOpen(false)}>
+            <NavLink to="/about">
               About
             </NavLink>
           </li>

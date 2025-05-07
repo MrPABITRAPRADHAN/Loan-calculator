@@ -1,73 +1,79 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const ExchangeRates = ({darkmode}) => {
-  const [rates, setRates] = useState({});
+const ExchangeRates = ({darkMode}) => {
+  const [rates, setRates] = useState(null);
   const [base, setBase] = useState('USD');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const currencies = ['USD', 'EUR', 'INR', 'JPY', 'GBP', 'AUD', 'CAD'];
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        setLoading(true);
-        const response = await axios.get(`https://api.exchangerate.host/latest?base=${base}`);
-        setRates(response.data.rates);
-        setError(null);
+        const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${base}`);
+        const data = await res.json();
+        if (data.rates) {
+          setRates(data.rates);
+        } else {
+          setError('Exchange rates not found.');
+        }
       } catch (err) {
+        setError('Failed to fetch exchange rates.');
         console.error(err);
-        setError('Failed to fetch exchange rates');
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchRates();
   }, [base]);
 
+  if (error) return <p className="text-red-500">{error}</p>;
+
+  if (!rates) return <p className="text-gray-700">Loading exchange rates...</p>;
+
   return (
-    <div className='min-h-screen min-w-screen' style={{ padding: '2rem' ,
-      backgroundColor: darkmode ? '#1f2937' : '#ffffff',
+    <div className="p-8 min-h-screen min-w-screen" style={{
+      backgroundColor: darkMode ? 'black' : 'white',
     }}>
-      <h2>Live Exchange Rates</h2>
+      <h2 className="text-xl font-bold mb-4" style={{
+      color: darkMode ? 'white' : 'black',
+    }}>Live Exchange Rates (Base: {base})</h2>
+      <select
+        value={base}
+        onChange={(e) => setBase(e.target.value)}
+        className="mb-4 p-2 border "
+      >
+        {Object.keys(rates).map((currency) => (
+          <option key={currency} value={currency} style={{
+            color:'black'
+          }}>{currency}</option>
+        ))}
+      </select>
 
-      <label>
-        Base Currency:
-        <select value={base} onChange={(e) => setBase(e.target.value)}>
-          {currencies.map((cur) => (
-            <option key={cur} value={cur}>
-              {cur}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {!loading && !error && (
-        <table border="1" cellPadding="10" style={{ marginTop: '1rem', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
-              <th>Currency</th>
-              <th>Rate (1 {base})</th>
+      <table className="min-w-full bg-grey border" style={{
+      backgroundColor: darkMode ? 'black' : 'white',
+      color: darkMode ? 'white' : 'black',
+    }}>
+        <thead style={{
+              backgroundColor: darkMode ? 'grey' : 'white'
+            }}>
+          <tr>
+            <th className="border p-2">Currency</th>
+            <th className="border p-2">Rate</th>
+          </tr>
+        </thead>
+        <tbody style={{
+      color: darkMode ? 'white' : 'black',
+    }}>
+          {Object.entries(rates).map(([currency, rate]) => (
+            <tr key={currency} >
+              <td className="border p-2" style={{
+              color: darkMode ? 'white' : 'black'
+            }}>{currency}</td>
+              <td className="border p-2" style={{
+              color: darkMode ? 'white' : 'black'
+            }}>{rate.toFixed(4)}</td>
             </tr>
-          </thead>
-          <tbody>
-            {currencies.map(
-              (cur) =>
-                cur !== base && (
-                  <tr key={cur}>
-                    <td>{cur}</td>
-                    <td>{rates[cur]?.toFixed(4) || 'N/A'}</td>
-                  </tr>
-                )
-            )}
-          </tbody>
-        </table>
-      )}
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

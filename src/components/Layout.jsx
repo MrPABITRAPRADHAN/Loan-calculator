@@ -11,11 +11,7 @@ function Layout({darkMode}) {
         zIndex: '0',
         height:'100%'
     }}>
-      <video
-        muted
-        autoPlay
-        loop
-        playsInline
+      <image
       style={{
         position:'absolute',
         top:'0',
@@ -23,12 +19,11 @@ function Layout({darkMode}) {
         width:'100%',
         height:'120',
         objectFit:'cover',
+        backgroundRepeat:'repeat',
         zIndex:'-1',
-        backgroundImage: darkMode ? `url(${bgVideo})` : 'none',
-        backgroundColor: darkMode ? 'black' : 'white',
       }}>
           <source src={bgVideo} type="video/mp4" />
-      </video>
+      </image>
       <LoanCalculator darkMode={darkMode} />
     </div>
   )

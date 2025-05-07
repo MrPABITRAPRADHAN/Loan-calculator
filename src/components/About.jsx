@@ -1,9 +1,13 @@
 import React from 'react';
 
-const About = () => {
+const About = ({darkMode}) => {
   return (
-    <div className="min-h-screen min-w-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-6 py-10 w-full">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen min-w-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-6 py-10 w-full" style={{
+      backgroundColor: darkMode ? 'black' : 'white',
+    }}>
+      <div className="max-w-4xl mx-auto" style={{
+      color: darkMode ? 'white' : 'black',
+    }}>
         <h1 className="text-4xl font-bold mb-6 text-center">About This App</h1>
 
         <section className="mb-10">

@@ -3,7 +3,7 @@ import '../Style/loancalc.css';
 
 const currencies = ['USD', 'EUR', 'INR', 'JPY', 'AUD', 'CAD', 'GBP'];
 
-const LoanCalculator = ({darkMode}) => {
+const LoanCalculator = ({ darkMode }) => {
   const [amount, setAmount] = useState('');
   const [rate, setRate] = useState('');
   const [term, setTerm] = useState('');
@@ -43,7 +43,7 @@ const LoanCalculator = ({darkMode}) => {
       balance -= principal;
       scheduleData.push({
         month: i,
-        principal:( principal* rateFactor).toFixed(2),
+        principal: (principal * rateFactor).toFixed(2),
         interest: (interest * rateFactor).toFixed(2),
         balance: (balance > 0 ? balance * rateFactor : 0).toFixed(2),
       });
@@ -71,8 +71,8 @@ const LoanCalculator = ({darkMode}) => {
       borderRadius: '8px',
     }}>
       <h2 style={{
-         color: darkMode ? 'white' : 'black',
-        }}>Loan Calculator Dashboard</h2>
+        color: darkMode ? 'white' : 'black',
+      }}>Loan Calculator Dashboard</h2>
       <form onSubmit={handleCalculate}>
         <label htmlFor="amount" style={{
           color: darkMode ? 'white' : 'black',
@@ -84,7 +84,9 @@ const LoanCalculator = ({darkMode}) => {
           onChange={(e) => setAmount(e.target.value)}
           placeholder="e.g. 50000"
           required
-        />
+          style={{
+            color: darkMode ? 'white' : 'black',
+          }} />
 
         <label htmlFor="rate" style={{
           color: darkMode ? 'white' : 'black',
@@ -95,9 +97,11 @@ const LoanCalculator = ({darkMode}) => {
           id="rate"
           value={rate}
           onChange={(e) => setRate(e.target.value)}
-          placeholder="e.g. 5.5"
+          placeholder="e.g. 8.5"
           required
-        />
+          style={{
+            color: darkMode ? 'white' : 'black',
+          }} />
 
         <label htmlFor="term" style={{
           color: darkMode ? 'white' : 'black',
@@ -107,8 +111,11 @@ const LoanCalculator = ({darkMode}) => {
           id="term"
           value={term}
           onChange={(e) => setTerm(e.target.value)}
-          placeholder="e.g. 10"
+          placeholder="e.g. 5"
           required
+          style={{
+            color: darkMode ? 'white' : 'black',
+          }}
         />
 
         <div className="currency-reset-row">
@@ -116,9 +123,14 @@ const LoanCalculator = ({darkMode}) => {
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
             className="currency-select"
-           >
+            style={{
+              color: darkMode ? 'white' : 'black',
+            }}
+          >
             {currencies.map((cur) => (
-              <option key={cur} value={cur}>
+              <option key={cur} value={cur} style={{
+                color: darkMode ? 'black' : 'black',
+              }}>
                 {cur}
               </option>
             ))}
@@ -134,7 +146,7 @@ const LoanCalculator = ({darkMode}) => {
       </form>
 
       {showTable && (
-        <div className="table-container">
+        <div className="table-container" >
           <h3>Amortization Schedule</h3>
           <table>
             <thead>
@@ -147,11 +159,19 @@ const LoanCalculator = ({darkMode}) => {
             </thead>
             <tbody>
               {schedule.map((item) => (
-                <tr key={item.month}>
-                  <td>{item.month}</td>
-                  <td>{item.principal}</td>
-                  <td>{item.interest}</td>
-                  <td>{item.balance}</td>
+                <tr key={item.month} >
+                  <td style={{
+                    color: darkMode ? 'white' : 'black'
+                  }}>{item.month}</td>
+                  <td style={{
+                    color: darkMode ? 'white' : 'black'
+                  }}>{item.principal}</td>
+                  <td style={{
+                    color: darkMode ? 'white' : 'black'
+                  }}>{item.interest}</td>
+                  <td style={{
+                    color: darkMode ? 'white' : 'black'
+                  }}>{item.balance}</td>
                 </tr>
               ))}
             </tbody>
