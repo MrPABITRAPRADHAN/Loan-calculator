@@ -13,24 +13,30 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         <div className="logo">Loan Calculator</div>
 
         <div className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+           {isOpen ? (
+            <span className="close-icon">✕</span>
+          ) : (
+            <>
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </>
+          )}
         </div>
 
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
           <li>
-            <NavLink to="/" >
+            <NavLink to="/" onClick={() => setIsOpen(false)}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/exchange"  >
+            <NavLink to="/exchange"  onClick={() => setIsOpen(false)}>
               Exchange Rates
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about">
+            <NavLink to="/about" onClick={() => setIsOpen(false)}>
               About
             </NavLink>
           </li>
